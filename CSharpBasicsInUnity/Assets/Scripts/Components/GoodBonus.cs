@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,11 @@ namespace Maze
     public class GoodBonus : Bonus, IFly, IFlicker
     {
 
+        public event Action<int> AddPoints = delegate (int i) { };
+
         [SerializeField] private Material _material;
+
+        private int _point;
 
 
         public override void Awake()
@@ -15,7 +20,7 @@ namespace Maze
             base.Awake();
             //init bonus point, material, height fly
             
-            _heightFly = Random.Range(1.0f, 5.0f);
+            _heightFly = UnityEngine.Random.Range(1.0f, 5.0f);
 
             _material = GetComponent<Renderer>().material;
             
@@ -25,13 +30,12 @@ namespace Maze
         public override void Execute()
         {
             Fly();
-            //fly
-            //flick
+            Flick();
         }
 
-        public void Flicker()
+        public void Flick()
         {
-            //throw new System.NotImplementedException();
+            _material.color = new Color(_material.color.r, _material.color.g, _material.color.b, Mathf.PingPong(Time.time, 1.0f));
         }
 
         public void Fly()
@@ -44,8 +48,9 @@ namespace Maze
         protected override void Interaction()
         {
             IsInterctable = false;
+
+            AddPoints?.Invoke(_point);
             
-            //Add point
         }
     }
 }

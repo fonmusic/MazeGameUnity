@@ -14,6 +14,8 @@ namespace Maze
 
         [SerializeField] private Bonus[] BonusObj;
 
+        [SerializeField] private BadBonus BadBonusObj;
+
         private void Awake()
         {
             _inputController = new InputController(_player);
@@ -21,7 +23,14 @@ namespace Maze
             _executeObjectController = new ListExecuteObjectController(BonusObj);
 
             _executeObjectController.AddExecuteObject(_inputController);
+
+            //BadBonusObj.OnCaughtPlayer += GameOver;
         }
+
+        //public void GameOver(string name, Color color)
+        //{
+        //    Debug.Log(name + " color:" + color);
+        //}
 
         private void Update()
         {
