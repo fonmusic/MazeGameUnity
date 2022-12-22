@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Maze
+public interface IFlicker
 {
-    public interface IRotation
-    {
-        void Rotate();
-    }
+    void Flicker();
 }

@@ -16,7 +16,7 @@ namespace Maze
         {
             if (_rigidbody)
             {
-                _rigidbody.AddForce(new Vector3(x, y, z));
+                _rigidbody.AddForce(new Vector3(x, y, z) * Speed);
             }
         }
     }

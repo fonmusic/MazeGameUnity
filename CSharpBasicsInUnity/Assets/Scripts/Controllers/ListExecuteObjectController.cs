@@ -7,26 +7,30 @@ namespace Maze
 {
     public class ListExecuteObjectController
     {
-        private IExecute[] _interactiveObject;
+        private IExecute[] _executeObjects;
 
-        public int Length { get { return _interactiveObject.Length; } }
+        public int Length { get { return _executeObjects.Length; } }
 
-        public IExecute[] InteractiveObject { get => _interactiveObject; set => _interactiveObject = value; }
+        public IExecute[] ExecuteObjects { get => _executeObjects; set => _executeObjects = value; }
 
-        public ListExecuteObjectController()
+        public ListExecuteObjectController(Bonus[] bonuses)
         {
-            
+            for (int i = 0; i < bonuses.Length; i++)
+            {
+                if (bonuses[i] is IExecute intObject)
+                    AddExecuteObject(intObject);
+            }
         }
 
-        public void AddExecuteObject(IExecute execute)
+        public void AddExecuteObject(IExecute executeObject)
         {
-            if (InteractiveObject == null)
+            if (ExecuteObjects == null)
             {
-                InteractiveObject = new[] { execute };
+                ExecuteObjects = new[] { executeObject };
                 return;
             }
-            Array.Resize(ref _interactiveObject, Length + 1);
-            InteractiveObject[Length - 1] = execute;
+            Array.Resize(ref _executeObjects, Length + 1);
+            ExecuteObjects[Length - 1] = executeObject;
         }
     }
 }

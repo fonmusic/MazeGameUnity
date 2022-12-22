@@ -13,7 +13,7 @@ public abstract class User
 }
 
 
-public class NewUser: User, Irotation
+public class NewUser: User, IRotation
 {
     private string name;
     private int health;

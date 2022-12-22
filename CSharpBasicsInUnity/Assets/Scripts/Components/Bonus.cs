@@ -19,13 +19,17 @@ namespace Maze
             set
             {
                 _isInterctable = value;
-                _renderer.enabled = value;
+                BonusRenderer.enabled = value;
                 _collider.enabled = value;
             }
         }
 
+        public Renderer BonusRenderer { get => _renderer; set => _renderer = value; }
+
         public virtual void Awake()
         {
+            //BonusRenderer = GetComponent<Renderer>();
+
             if (!TryGetComponent<Renderer>(out _renderer))
             {
                 Debug.Log("No Renderer component");
@@ -38,7 +42,7 @@ namespace Maze
 
             IsInterctable = true;
             _color = Random.ColorHSV();
-            _renderer.sharedMaterial.color = _color;
+            BonusRenderer.sharedMaterial.color = _color;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -51,7 +55,7 @@ namespace Maze
 
         protected abstract void Interaction();
 
-        public abstract void Update(); 
+        public abstract void Execute(); 
         
     }
 }

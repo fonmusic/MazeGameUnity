@@ -8,28 +8,30 @@ namespace Maze
     {
         private InputController _inputController;
 
-        private ListExecuteObjectController _executeObject;
+        private ListExecuteObjectController _executeObjectController;
 
         [SerializeField] private Unit _player;
+
+        [SerializeField] private Bonus[] BonusObj;
 
         private void Awake()
         {
             _inputController = new InputController(_player);
 
-            _executeObject = new ListExecuteObjectController();
+            _executeObjectController = new ListExecuteObjectController(BonusObj);
 
-            _executeObject.AddExecuteObject(_inputController);
+            _executeObjectController.AddExecuteObject(_inputController);
         }
 
         private void Update()
         {
-            for (int i = 0; i < _executeObject.Length; i++)
+            for (int i = 0; i < _executeObjectController.Length; i++)
             {
-                if (_executeObject.InteractiveObject[i] == null)
+                if (_executeObjectController.ExecuteObjects[i] == null)
                 {
                     continue;
                 }
-                _executeObject.InteractiveObject[i].Update();
+                _executeObjectController.ExecuteObjects[i].Execute();
             }
         }
     }
