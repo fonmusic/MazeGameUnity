@@ -4,23 +4,24 @@ using UnityEngine;
 
 namespace Maze
 {
-    public class CameraController : MonoBehaviour//, IExecute
+    public class CameraController :  IExecute
     {
-        public Unit _player;
+        private Transform _player;
+        private Transform _camera;
         private Vector3 _offset;
 
-        private void Start()
+        public CameraController(Transform player, Transform mainCamera)
         {
-            _offset = transform.position - _player.transform.position;
-        }
-        private void LateUpdate()
-        {
-            transform.position = _player.transform.position + _offset;
+            _player = player;
+            _camera = mainCamera;
+            _offset = _camera.position - _player.position;
+            _camera.LookAt(_player);
         }
 
-        //public void Execute()
-        //{
-        //    transform.position = _player.transform.position + _offset;
-        //}
+
+        public void Execute()
+        {
+            _camera.position = _player.position + _offset;
+        }
     }
 }

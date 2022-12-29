@@ -5,12 +5,13 @@ using UnityEngine.UIElements;
 
 namespace Maze
 {
-    public abstract class Bonus : MonoBehaviour, IExecute
+    public abstract class Bonus : IExecute
     {
         private bool _isInterctable;
         protected Color _color;
         private Renderer _renderer;
         private Collider _collider;
+
         public float _heightFly;
 
         public bool IsInterctable
@@ -26,19 +27,10 @@ namespace Maze
 
         public Renderer BonusRenderer { get => _renderer; set => _renderer = value; }
 
-        public virtual void Awake()
+        public Bonus(LevelObjectView levelObjectView)
         {
-            //BonusRenderer = GetComponent<Renderer>();
-
-            if (!TryGetComponent<Renderer>(out _renderer))
-            {
-                Debug.Log("No Renderer component");
-            }
-
-            if (!TryGetComponent<Collider>(out _collider))
-            {
-                Debug.Log("No Collider component");
-            }
+            _renderer = levelObjectView._Renderer;
+            _collider = levelObjectView._Collider;
 
             IsInterctable = true;
             _color = Random.ColorHSV();

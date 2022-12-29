@@ -9,7 +9,7 @@ namespace Maze
         public Transform _transform;
         public Rigidbody _rigidbody;
 
-        private float _speed = 5f;
+        private float _speed = 7f;
         private int _health = 100;
         private bool _isDead;
 

@@ -20,7 +20,7 @@ namespace Maze
                 if (_bonusLabel == null)
                 {
                     GameObject bonusPrefab = Resources.Load<GameObject>("UI/Bonus");
-                    _bonusLabel = Object.Instantiate(bonusPrefab, _canvas.transform);
+                    _bonusLabel = Object.Instantiate(bonusPrefab, Canvas.transform);
                 }
                 return _bonusLabel;
             }
@@ -33,8 +33,8 @@ namespace Maze
             {
                 if (_endGameLabel == null)
                 {
-                    GameObject endGamePrefab = Resources.Load<GameObject>("UI/endGame");
-                    _endGameLabel = Object.Instantiate(endGamePrefab, _canvas.transform);
+                    GameObject endGamePrefab = Resources.Load<GameObject>("UI/EndGame");
+                    _endGameLabel = Object.Instantiate(endGamePrefab, Canvas.transform);
                 }
                 return _endGameLabel;
             }
@@ -48,7 +48,7 @@ namespace Maze
                 if (_restartButton == null)
                 {
                     GameObject Prefab = Resources.Load<GameObject>("UI/RestartButton");
-                    _restartButton = Object.Instantiate(Prefab, _canvas.transform);
+                    _restartButton = Object.Instantiate(Prefab, Canvas.transform);
                 }
                 return _restartButton;
             }

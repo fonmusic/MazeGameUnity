@@ -9,20 +9,24 @@ namespace Maze
     {
 
         public event Action<int> AddPoints = delegate (int i) { };
-
         [SerializeField] private Material _material;
+        private int _point = 1;
+        private LevelObjectView _levelObjectView;
 
-        private int _point;
 
-
-        public override void Awake()
+        public GoodBonus(LevelObjectView levelObjectView) : base(levelObjectView)
         {
-            base.Awake();
-            //init bonus point, material, height fly
+            _levelObjectView = levelObjectView;
+            Init();
+        }
+
+        public void Init()
+        {
+            
             
             _heightFly = UnityEngine.Random.Range(1.0f, 5.0f);
 
-            _material = GetComponent<Renderer>().material;
+            _material = _levelObjectView._Renderer.material;
             
         }
 
@@ -40,7 +44,7 @@ namespace Maze
 
         public void Fly()
         {
-            transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time, _heightFly), transform.position.z);
+            _levelObjectView._Transform.position = new Vector3(_levelObjectView._Transform.position.x, Mathf.PingPong(Time.time, _heightFly), _levelObjectView._Transform.position.z);
         }
 
         
@@ -49,7 +53,7 @@ namespace Maze
         {
             IsInterctable = false;
 
-            AddPoints?.Invoke(_point);
+            AddPoints.Invoke(_point);
             
         }
     }

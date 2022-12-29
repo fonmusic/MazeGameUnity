@@ -5,32 +5,57 @@ using UnityEngine;
 
 namespace Maze
 {
-    public class ListExecuteObjectController
+    public class ListExecuteObjectController : IEnumerable, IEnumerator
     {
+        private int _index = -1;
         private IExecute[] _executeObjects;
 
         public int Length { get { return _executeObjects.Length; } }
 
-        public IExecute[] ExecuteObjects { get => _executeObjects; set => _executeObjects = value; }
+        public object Current => _executeObjects[_index];
+
+        public IExecute this [int curr] 
+        {
+            get => _executeObjects[curr];
+            set => _executeObjects[curr] = value;
+        }
 
         public ListExecuteObjectController(Bonus[] bonuses)
         {
             for (int i = 0; i < bonuses.Length; i++)
             {
-                if (bonuses[i] is IExecute intObject)
-                    AddExecuteObject(intObject);
+                if (bonuses[i] is IExecute execute)
+                    AddExecuteObject(execute);
             }
         }
 
         public void AddExecuteObject(IExecute executeObject)
         {
-            if (ExecuteObjects == null)
+            if (_executeObjects == null)
             {
-                ExecuteObjects = new[] { executeObject };
+                _executeObjects = new[] { executeObject };
                 return;
             }
             Array.Resize(ref _executeObjects, Length + 1);
-            ExecuteObjects[Length - 1] = executeObject;
+            _executeObjects[Length - 1] = executeObject;
+        }
+        
+        public IEnumerator GetEnumerator()
+        {
+            return this;
+        }
+
+        public bool MoveNext()
+        {
+            if (_index == Length - 1)
+                return false;
+            _index++;
+            return true;
+        }
+
+        public void Reset()
+        {
+            _index = -1;
         }
     }
 }
