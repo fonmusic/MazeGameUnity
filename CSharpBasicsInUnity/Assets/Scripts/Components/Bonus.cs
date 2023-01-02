@@ -5,8 +5,28 @@ using UnityEngine.UIElements;
 
 namespace Maze
 {
-    public abstract class Bonus : IExecute
+    //public struct BonusData
+    //{
+    //    public string Name;
+    //    public Vector3 Position;
+    //    public Quaternion Rotation;
+    //    public bool Interectable;
+
+    //    public BonusData(Bonus bonus)
+    //    {
+    //        Name = bonus.name;
+    //        Position = bonus.transform.position;
+    //        Rotation = bonus.transform.rotation;
+    //        Interectable = bonus.IsInterctable;
+    //    }
+    //}
+
+    public abstract class Bonus : MonoBehaviour, IExecute
     {
+        //public BonusData _bonusData;
+        //private ISaveData _saveData;
+
+
         private bool _isInterctable;
         protected Color _color;
         private Renderer _renderer;
@@ -47,7 +67,23 @@ namespace Maze
 
         protected abstract void Interaction();
 
-        public abstract void Execute(); 
-        
+        public abstract void Execute();
+
+        //public void Awake()
+        //{
+        //    _saveData = new JSONData();
+
+        //    _bonusData = new BonusData(this);
+        //    _saveData.SaveDataBonuses(_bonusData);
+
+        //    BonusData tempBonusData = new BonusData();
+        //    tempBonusData = _saveData.LoadBonuses();
+
+        //    Debug.Log(tempBonusData.Name);
+        //    Debug.Log(tempBonusData.Position);
+        //    Debug.Log(tempBonusData.Rotation);
+        //    Debug.Log(tempBonusData.Interectable);
+        //}
+
     }
 }
