@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ArrayOfSvect3 xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Svect3>
+    <X>29.6</X>
+    <Y>0.99</Y>
+    <Z>-16.23</Z>
+  </Svect3>
+  <Svect3>
+    <X>29.6</X>
+    <Y>0.99</Y>
+    <Z>-9.99</Z>
+  </Svect3>
+  <Svect3>
+    <X>29.6</X>
+    <Y>0.99</Y>
+    <Z>-13.11</Z>
+  </Svect3>
+</ArrayOfSvect3>
