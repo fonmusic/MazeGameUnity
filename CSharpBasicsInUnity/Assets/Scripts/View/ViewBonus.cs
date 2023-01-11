@@ -9,16 +9,21 @@ namespace Maze
     {
         private Text _bonusLabel;
 
-
         public ViewBonus(GameObject bonusLabelPrefab)
         {
             _bonusLabel = bonusLabelPrefab.GetComponent<Text>();
             _bonusLabel.text = string.Empty;
         }
 
-        public void Display(int value)
+        //public void Display(int value)
+        //{
+        //    _bonusLabel.text = $"Bonus: {value}";
+        //}
+
+        public void Display(string name, int value)
         {
-            _bonusLabel.text = $"Bonus: {value}";
+            
+            _bonusLabel.text = $"Bonus \"{name}\": {value}";
         }
     }
 }

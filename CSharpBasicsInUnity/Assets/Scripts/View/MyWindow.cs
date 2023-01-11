@@ -6,7 +6,7 @@ namespace Maze
     public class MyWindow : EditorWindow
     {
         public static GameObject ObjectInstantiate;
-        public string _nameObject = "Hello World";
+        public string _nameObject = "Bonus";
         public bool _groupEnabled;
         public bool _randomColor = true;
         public int _countObject = 1;
@@ -14,15 +14,15 @@ namespace Maze
 
         private void OnGUI()
         {
-            GUILayout.Label("Базовые настройки", EditorStyles.boldLabel);
-            ObjectInstantiate = EditorGUILayout.ObjectField("Объект который хотим вставить", ObjectInstantiate, typeof(GameObject), true) as GameObject;
-            _nameObject = EditorGUILayout.TextField("Имя объекта", _nameObject);
-            _groupEnabled = EditorGUILayout.BeginToggleGroup("Дополнительные настройки", _groupEnabled);
-            _randomColor = EditorGUILayout.Toggle("Случайный цвет", _randomColor);
-            _countObject = EditorGUILayout.IntSlider("Количество объектов", _countObject, 1, 100);
-            _radius = EditorGUILayout.Slider("Радиус окружности", _radius, 10, 50);
+            GUILayout.Label("Main preferences", EditorStyles.boldLabel);
+            ObjectInstantiate = EditorGUILayout.ObjectField("Object that we create", ObjectInstantiate, typeof(GameObject), true) as GameObject;
+            _nameObject = EditorGUILayout.TextField("Object's name", _nameObject);
+            _groupEnabled = EditorGUILayout.BeginToggleGroup("Additional preferences", _groupEnabled);
+            _randomColor = EditorGUILayout.Toggle("Random color", _randomColor);
+            _countObject = EditorGUILayout.IntSlider("Number of objects", _countObject, 1, 100);
+            _radius = EditorGUILayout.Slider("Radius of a circle", _radius, 10, 50);
             EditorGUILayout.EndToggleGroup();
-            var button = GUILayout.Button("Создать объекты");
+            var button = GUILayout.Button("Create objects");
             if (button)
             {
                 if (ObjectInstantiate)

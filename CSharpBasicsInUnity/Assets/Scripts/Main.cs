@@ -17,11 +17,12 @@ namespace Maze
         private ViewBonus _viewBonus;
         private ViewEndGame _viewEndGame;
 
-        private int _bounceCount;
+        private (string, int) _bounceCount;
+
+        //private int _bounceCount;
 
         [SerializeField] private Unit _player;
-        [SerializeField] private LevelObjectView[] _bonusView;
-        [SerializeField] private Bonus[] BonusObjects = new Bonus[3];
+        [SerializeField] private Bonus[] BonusObjects;
         [SerializeField] private BadBonus BadBonusObj;
         [SerializeField] private Button _restartButton;
 
@@ -29,10 +30,6 @@ namespace Maze
         {
             Time.timeScale = 1f;
 
-            for (int i = 0; i < _bonusView.Length; i++)
-            {
-                BonusObjects[i] = new GoodBonus(_bonusView[i]);
-            }
 
             _reference = new Reference();
 
@@ -61,13 +58,7 @@ namespace Maze
                     badBonus.OnCaughtPlayer += CaughtPlayer;
                 }
             }
-            //BadBonusObj.OnCaughtPlayer += GameOver;
         }
-
-        //public void GameOver(string name, Color color)
-        //{
-        //    Debug.Log(name + " color:" + color);
-        //}
 
 
         private void RestartGame()
@@ -75,10 +66,11 @@ namespace Maze
             SceneManager.LoadScene(0);
         }
 
-        private void AddBonus(int value)
+        private void AddBonus(string name, int value)
         {
-            _bounceCount += value;
-            _viewBonus.Display(_bounceCount);
+            _bounceCount.Item1 = name; 
+            _bounceCount.Item2 += value;
+            _viewBonus.Display(_bounceCount.Item1, _bounceCount.Item2);
         }
 
         private void CaughtPlayer(string value, Color color)
@@ -89,34 +81,7 @@ namespace Maze
 
         private void Update()
         {
-            //for (int i = 0; i < _executeObjectController.Length; i++)
-            //{
-            //    if (_executeObjectController.ExecuteObjects[i] == null)
-            //    {
-            //        continue;
-            //    }
-            //    _executeObjectController.ExecuteObjects[i].Execute();
-            //}
 
-            //while (_executeObjectController.MoveNext())
-            //{
-            //    IExecute temp = (IExecute)_executeObjectController.Current;
-            //    temp.Execute();
-            //}
-
-
-            //if (_executeObjectController.MoveNext())
-            //{
-            //    IExecute temp = (IExecute)_executeObjectController.Current;
-            //    temp.Execute();
-            //}
-            //else
-            //{
-            //    _executeObjectController.Reset();
-            //}
-
-
-            //_inputController.Execute();
             for (int i = 0; i < _executeObjectController.Length; i++)
             {
                 if (_executeObjectController[i] == null)

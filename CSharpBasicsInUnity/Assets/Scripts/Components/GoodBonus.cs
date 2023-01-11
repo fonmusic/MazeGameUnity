@@ -8,28 +8,24 @@ namespace Maze
     public class GoodBonus : Bonus, IFly, IFlicker
     {
 
-        public event Action<int> AddPoints = delegate (int i) { };
+        //public event Action<int> AddPoints = delegate (int i) { };
+
+        public event Action<string, int> AddPoints = delegate (string name, int value) { };
+
         [SerializeField] private Material _material;
+
         private int _point = 1;
-        private LevelObjectView _levelObjectView;
 
 
-        public GoodBonus(LevelObjectView levelObjectView) : base(levelObjectView)
+        public override void Awake()
         {
-            _levelObjectView = levelObjectView;
-            Init();
-        }
+            base.Awake();
+            //init bonus point, material, height fly
 
-        public void Init()
-        {
-            
-            
             _heightFly = UnityEngine.Random.Range(1.0f, 5.0f);
 
-            _material = _levelObjectView._Renderer.material;
-            
+            _material = GetComponent<Renderer>().material;
         }
-
 
         public override void Execute()
         {
@@ -44,17 +40,14 @@ namespace Maze
 
         public void Fly()
         {
-            _levelObjectView._Transform.position = new Vector3(_levelObjectView._Transform.position.x, Mathf.PingPong(Time.time, _heightFly), _levelObjectView._Transform.position.z);
+            transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time, _heightFly), transform.position.z);
         }
-
-        
 
         protected override void Interaction()
         {
             IsInterctable = false;
 
-            AddPoints.Invoke(_point);
-            
+            AddPoints.Invoke(gameObject.name, _point);
         }
     }
 }

@@ -4,24 +4,24 @@ using UnityEngine;
 
 namespace Maze
 {
-    public struct BonusData
-    {
-        public string Name;
-        public Vector3 Position;
-        public Quaternion Rotation;
+    //public struct BonusData
+    //{
+    //    public string Name;
+    //    public Vector3 Position;
+    //    public Quaternion Rotation;
 
-        public BonusData(LevelObjectView levelObjectView)
-        {
-            Name = levelObjectView.name;
-            Position = levelObjectView.transform.position;
-            Rotation = levelObjectView.transform.rotation;
-        }
-    }
+    //    public BonusData(LevelObjectView levelObjectView)
+    //    {
+    //        Name = levelObjectView.name;
+    //        Position = levelObjectView.transform.position;
+    //        Rotation = levelObjectView.transform.rotation;
+    //    }
+    //}
 
     public class LevelObjectView : MonoBehaviour
     {
-        public BonusData _bonusData;
-        private ISaveData _saveData;
+        //public BonusData _bonusData;
+        //private ISaveData _saveData;
 
 
         [SerializeField] private Transform _transform;
@@ -48,20 +48,20 @@ namespace Maze
         //        Debug.Log("No Collider component");
         //    }
         //}
-        public void Awake()
-        {
-            _saveData = new JSONData();
+        //public void Awake()
+        //{
+        //    _saveData = new JSONData();
 
-            _bonusData = new BonusData(this);
-            _saveData.SaveDataBonuses(_bonusData);
+        //    _bonusData = new BonusData(this);
+        //    _saveData.SaveDataBonuses(_bonusData);
 
-            BonusData tempBonusData = new BonusData();
-            tempBonusData = _saveData.LoadBonuses();
+        //    BonusData tempBonusData = new BonusData();
+        //    tempBonusData = _saveData.LoadBonuses();
 
-            Debug.Log(tempBonusData.Name);
-            Debug.Log(tempBonusData.Position);
-            Debug.Log(tempBonusData.Rotation);
-        }
+        //    Debug.Log(tempBonusData.Name);
+        //    Debug.Log(tempBonusData.Position);
+        //    Debug.Log(tempBonusData.Rotation);
+        //}
 
 
     }
