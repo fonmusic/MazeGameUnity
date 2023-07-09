@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Maze
 {
@@ -48,8 +45,6 @@ namespace Maze
 
         public virtual void Awake()
         {
-            //BonusRenderer = GetComponent<Renderer>();
-
             if (!TryGetComponent<Renderer>(out _renderer))
             {
                 Debug.Log("No Renderer component");

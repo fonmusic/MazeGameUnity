@@ -1,15 +1,10 @@
-using System.Collections;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Maze
 {
     public class GoodBonus : Bonus, IFly, IFlicker
     {
-
-        //public event Action<int> AddPoints = delegate (int i) { };
-
         public event Action<string, int> AddPoints = delegate (string name, int value) { };
 
         [SerializeField] private Material _material;
@@ -20,7 +15,6 @@ namespace Maze
         public override void Awake()
         {
             base.Awake();
-            //init bonus point, material, height fly
 
             _heightFly = UnityEngine.Random.Range(1.0f, 5.0f);
 

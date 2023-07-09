@@ -13,7 +13,6 @@ namespace Maze
         private static XmlSerializer serializer;
         public List<Svect3> SaveBonusesT = new List<Svect3>();
         public Svect3[] bonusesPosition;
-        //public List<Svect3> LoadBonusesT = new List<Svect3>();
 
         public override void OnInspectorGUI()
         {

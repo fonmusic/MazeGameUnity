@@ -15,11 +15,6 @@ namespace Maze
             _bonusLabel.text = string.Empty;
         }
 
-        //public void Display(int value)
-        //{
-        //    _bonusLabel.text = $"Bonus: {value}";
-        //}
-
         public void Display(string name, int value)
         {
             
